@@ -17,6 +17,7 @@
     "phosphor-react-native": "^2.0.0",
     "react": "18.2.0",
     "react-native": "0.72.6",
+    "react-native-svg": "13.9.0",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
