@@ -4,6 +4,7 @@ import { Highlight } from '@components/Highlight';
 import { useState } from 'react';
 import { FlatList } from 'react-native';
 
+import { ListEmpty } from '@components/ListEmpty';
 import { Container } from './styles';
 
 export function Groups() {
@@ -23,8 +24,9 @@ export function Groups() {
          title={item}
         />
       )}
+      contentContainerStyle={groups.length === 0 && { flex: 1 }}
+      ListEmptyComponent={() => <ListEmpty message="No groups found" />}
      />
-      <GroupCard title="Team 1" />
     </Container>
   );
 }
