@@ -26,6 +26,7 @@ export function Groups() {
       )}
       contentContainerStyle={groups.length === 0 && { flex: 1 }}
       ListEmptyComponent={() => <ListEmpty message="No groups found" />}
+      showsVerticalScrollIndicator={false}
      />
     </Container>
   );
