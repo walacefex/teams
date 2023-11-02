@@ -1,3 +1,4 @@
+import { Filter } from "@components/Filter";
 import { Container, Form } from "./styles";
 
 import { ButtonIcon } from "@components/Button/ButtonIcon";
@@ -21,6 +22,7 @@ export function Players() {
 
         <ButtonIcon icon="house" />
       </Form>
+      <Filter title="Time A" isActive />
      
     </Container>
   )
