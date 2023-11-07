@@ -71,10 +71,11 @@ async function fetchPlayersByTeam() {
     setIsLoading(true);
     const playersByTeam = await playersGetByGroupAndTeam(group, team);
     setPlayers(playersByTeam);  
-    setIsLoading(false);
   } catch(error) {
     console.log(error);
     Alert.alert('Players', 'Can not load players');
+  } finally {
+    setIsLoading(false);
   }
 }
 

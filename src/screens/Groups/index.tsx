@@ -27,13 +27,13 @@ export function Groups() {
       setIsLoading(true);
 
       const data = await groupsGetAll();
-
       setGroups(data); 
-      setIsLoading(false);
-
+    
     } catch(error){ 
       console.log(error);
       Alert.alert('Groups', 'Error loading groups');
+     } finally {
+       setIsLoading(false);
      }
   }
 
@@ -52,7 +52,7 @@ export function Groups() {
       title="Teams"
       subtitle='Play with your class'
      />
-     
+
      {isLoading ? <Loading /> : 
 
       <FlatList
