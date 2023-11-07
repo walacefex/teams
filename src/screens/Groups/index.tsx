@@ -1,6 +1,6 @@
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useCallback, useState } from 'react';
-import { FlatList } from 'react-native';
+import { Alert, FlatList } from 'react-native';
 
 import { Button } from '@components/Button';
 import { GroupCard } from '@components/GroupCard';
@@ -25,6 +25,7 @@ export function Groups() {
       setGroups(data); 
     }catch(error){ 
       console.log(error);
+      Alert.alert('Groups', 'Error loading groups');
      }
   }
 
