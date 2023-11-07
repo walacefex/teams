@@ -4,9 +4,10 @@ import { Alert, FlatList, TextInput } from 'react-native';
 
 import { AppError } from '@utils/AppError';
 
-import { playerAddByGroup } from '@storage/player/playerAddByGroup';
-import { playersGetByGroupAndTeam } from '@storage/player/playersGetByGroupandTeam';
 import { PlayerStorageDTO } from '@storage/player/PlayerStorageDTO';
+import { playerAddByGroup } from '@storage/player/playerAddByGroup';
+import { playersRemoveByGroup } from '@storage/player/playerRemoveByGroup';
+import { playersGetByGroupAndTeam } from '@storage/player/playersGetByGroupandTeam';
 
 import { Button } from '@components/Button';
 import { ButtonIcon } from "@components/Button/ButtonIcon";
@@ -33,7 +34,7 @@ export function Players() {
 
   const newPlayerNameInputRef = useRef<TextInput>(null);
 
-  async function handleAddPlayer() {
+async function handleAddPlayer() {
     if(newPlayerName.trim().length === 0){
       return Alert.alert('New player', 'Enter the name of the player');
     } 
@@ -70,6 +71,17 @@ async function fetchPlayersByTeam() {
     Alert.alert('Players', 'Can not load players');
   }
 }
+
+async function handleRemovePlayer(playerName: string) {
+  try{
+    await playersRemoveByGroup(playerName, group);
+    fetchPlayersByTeam();
+  } catch(error) {
+    console.log(error);
+    Alert.alert('Players', 'Can not remove player');
+  }
+}
+
   useEffect(() => {
     fetchPlayersByTeam();
   }, [team]);
@@ -120,7 +132,7 @@ async function fetchPlayersByTeam() {
         renderItem={({ item }) => (
           <PlayerCard
             name={item.name}
-            onRemove={() => { }}
+            onRemove={() => handleRemovePlayer(item.name)}
           />
         )}
         ListEmptyComponent={() =>( 
